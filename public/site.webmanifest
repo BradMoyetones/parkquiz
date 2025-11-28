@@ -1,0 +1,17 @@
+{
+  "name": "ParkQuiz",
+  "short_name": "ParkQuiz",
+  "icons": [
+    {
+      "src": "/LOGO_FPJD_BLANCO_192x192.jpg",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/LOGO_FPJD_BLANCO_192x192.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "display": "standalone"
+}
