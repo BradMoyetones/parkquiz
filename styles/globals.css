@@ -149,3 +149,10 @@
   background-image: radial-gradient(currentColor 1px, transparent 1px);
   background-size: 20px 20px;
 }
+
+/* Mode Toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}

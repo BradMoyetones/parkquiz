@@ -1,5 +1,5 @@
 // --- DATOS DE EJEMPLO (MOCK DATA) ---
-import { Brain, Compass, MapPin } from 'lucide-react';
+import { Brain, Compass, HelpCircle, MapPin, RotateCw, SearchIcon } from 'lucide-react';
 
 const TRIVIA_QUESTIONS = [
     {
@@ -55,4 +55,33 @@ const FACTS = [
     },
 ];
 
-export { TRIVIA_QUESTIONS, ROULETTE_OPTIONS, FACTS };
+const GAMES = [
+    {
+        title: "Trivia Wakatá",
+        description: "Demuestra cuánto sabes sobre los animales y monumentos del parque.",
+        icon: <Brain className="w-6 h-6" />,
+        tag: "Popular",
+        href: "/trivia",
+    },
+    {
+        title: "Ruleta Familiar",
+        description: "Verdad, Reto o Dato Curioso. ¡Perfecto para romper el hielo!",
+        icon: <RotateCw className="w-6 h-6" />,
+        tag: "Diversión",
+        href: "/roulette",
+    },
+    {
+        title: "Encuentra al Cóndor",
+        description: "Mini-juego de observación. ¿Qué tan rápidos son tus ojos?",
+        icon: <SearchIcon className="w-6 h-6" />,
+        href: "/soon",
+    },
+    {
+        title: "¿Quién Soy?",
+        description: "Adivina el personaje o lugar con pistas que se vuelven más fáciles.",
+        icon: <HelpCircle className="w-6 h-6" />,
+        href: "/soon",
+    },
+];
+
+export { TRIVIA_QUESTIONS, ROULETTE_OPTIONS, FACTS, GAMES };

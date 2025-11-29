@@ -7,10 +7,8 @@ import {
     HelpCircle,
     Trophy,
     ArrowRight,
-    MapPin,
     Star,
     ChevronRight,
-    X,
     RotateCw,
 } from 'lucide-react';
 
