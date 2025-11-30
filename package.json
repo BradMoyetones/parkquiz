@@ -4,14 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run prebuild && next build",
     "start": "next start",
     "lint": "eslint",
     "auth:generate": "npx @better-auth/cli generate",
     "auth:migrate": "npx @better-auth/cli migrate",
     "db:push": "npx drizzle-kit push",
     "db:generate": "npx drizzle-kit generate",
-    "db:migrate": "npx drizzle-kit migrate"
+    "db:migrate": "npx drizzle-kit migrate",
+    "prebuild": "npm run db:generate && npm run db:migrate"
   },
   "dependencies": {
     "@libsql/client": "^0.15.15",
