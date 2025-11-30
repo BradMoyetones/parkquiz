@@ -4,39 +4,30 @@ import { getContent } from "@/lib/mdx";
 import { getTableOfContents } from 'fumadocs-core/content/toc';
 
 import { DocsTableOfContents } from "@/components/docs-toc";
-import { TableOfContents } from "fumadocs-core/toc";
 import { DocsCopyPage } from "@/components/docs-copy-page"
 import { absoluteUrl } from "@/lib/utils"
 import { Section, SectionContent } from "@/components/section";
+import { Metadata } from "next";
 
 interface LagalParams {
     params: Promise<{ slug?: string }>
 }
 
-function extractTOC(content: string): TableOfContents {
-    try {
-        const tocItems = getTableOfContents(content)
-
-        return tocItems
-    } catch (error) {
-        console.error("Error generating TOC with fumadocs:", error)
-        // Fallback to manual extraction
-        const toc: TableOfContents = []
-        const headingRegex = /^(#{2,4})\s+(.+)$/gm
-        let match
-
-        while ((match = headingRegex.exec(content)) !== null) {
-            const depth = match[1].length
-            const title = match[2].trim()
-            const id = title
-                .toLowerCase()
-                .replace(/[^a-z0-9\s-]/g, "")
-                .replace(/\s+/g, "-")
-            toc.push({ title, url: `#${id}`, depth })
-        }
-
-        return toc
+export async function generateMetadata({ params }: LagalParams): Promise<Metadata> {
+    const {slug} = await params
+    const legal = getContent("legal").find((post) => post.slug === slug);
+    
+    if (!legal) {
+        return {
+            title: "Página no encontrada",
+            description: "La página legal solicitada no existe.",
+        };
     }
+
+    return {
+        title: legal.metadata.title,
+        description: legal.metadata.summary || "Información legal y políticas.",
+    };
 }
 
 export async function generateStaticParams() {
@@ -44,7 +35,7 @@ export async function generateStaticParams() {
     const allPosts: { slug: string }[] = [];
 
     // Fetch posts for each locale
-    const posts = getContent('legal', "es");
+    const posts = getContent('legal');
     allPosts.push(...posts.map(post => ({
         slug: post.slug,
     })));
@@ -60,7 +51,7 @@ export default async function Legal({ params }: LagalParams) {
         notFound();
     }
 
-    const tocItems = extractTOC(legal.content)
+    const tocItems = getTableOfContents(legal.content)
 
     return (
         <Section>

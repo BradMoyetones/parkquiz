@@ -1,0 +1,123 @@
+.
+├── app
+│   ├── (app)
+│   │   ├── (games)
+│   │   │   └── games
+│   │   │       ├── page.tsx
+│   │   │       └── trivia
+│   │   │           ├── page.tsx
+│   │   │           └── play
+│   │   │               └── page.tsx
+│   │   ├── (root)
+│   │   │   ├── components
+│   │   │   │   ├── game-card.tsx
+│   │   │   │   ├── games.tsx
+│   │   │   │   ├── hero.tsx
+│   │   │   │   ├── init-page.tsx
+│   │   │   │   ├── learn.tsx
+│   │   │   │   └── run.tsx
+│   │   │   ├── layout.tsx
+│   │   │   ├── legal
+│   │   │   │   └── [slug]
+│   │   │   │       └── page.tsx
+│   │   │   └── page.tsx
+│   │   └── auth
+│   │       └── page.tsx
+│   ├── api
+│   │   └── auth
+│   │       └── [...all]
+│   │           └── route.ts
+│   └── layout.tsx
+├── components
+│   ├── animate-ui
+│   │   ├── icons
+│   │   │   ├── icon.tsx
+│   │   │   └── menu.tsx
+│   │   ├── motion-effect.tsx
+│   │   └── primitives
+│   │       ├── animate
+│   │       │   └── slot.tsx
+│   │       └── texts
+│   │           └── splitting.tsx
+│   ├── animated-theme-toggler.tsx
+│   ├── callout.tsx
+│   ├── docs-copy-page.tsx
+│   ├── docs-toc.tsx
+│   ├── icons
+│   │   ├── google-icon.tsx
+│   │   └── theme-icon.tsx
+│   ├── mdx-components.tsx
+│   ├── mdx.tsx
+│   ├── section.tsx
+│   ├── sidebar.tsx
+│   ├── site-footer.tsx
+│   ├── site-header.tsx
+│   ├── theme-provider.tsx
+│   ├── ui
+│   │   ├── accordion.tsx
+│   │   ├── alert.tsx
+│   │   ├── aspect-ratio.tsx
+│   │   ├── avatar.tsx
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   ├── dropdown-menu.tsx
+│   │   ├── kbd.tsx
+│   │   ├── separator.tsx
+│   │   ├── skeleton.tsx
+│   │   ├── sonner.tsx
+│   │   └── tabs.tsx
+│   └── user-dropdown.tsx
+├── components.json
+├── content
+│   └── es
+│       └── legal
+│           ├── cookies.mdx
+│           ├── privacy.mdx
+│           └── terms.mdx
+├── db
+│   ├── client.ts
+│   └── schema.ts
+├── drizzle
+│   ├── 0000_pink_mole_man.sql
+│   ├── 0001_mysterious_lester.sql
+│   ├── 0002_swift_zemo.sql
+│   └── meta
+│       ├── _journal.json
+│       ├── 0000_snapshot.json
+│       ├── 0001_snapshot.json
+│       └── 0002_snapshot.json
+├── drizzle.config.ts
+├── eslint.config.mjs
+├── hooks
+│   ├── use-copy-to-clipboard.ts
+│   └── use-is-in-view.tsx
+├── lib
+│   ├── auth-client.ts
+│   ├── auth.ts
+│   ├── config.ts
+│   ├── data.tsx
+│   ├── fonts.ts
+│   ├── mdx.ts
+│   └── utils.ts
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── public
+│   ├── apple-touch-icon_parque.jpg
+│   ├── favicon-16x16.jpg
+│   ├── favicon-32x32.jpg
+│   ├── favicon.ico
+│   ├── LOGO_FPJD_BLANCO_192x192.jpg
+│   ├── LOGO_FPJD.png
+│   ├── opengraph-image.png
+│   ├── placeholder.svg
+│   └── site.webmanifest
+├── README.md
+├── structure.txt
+├── styles
+│   └── globals.css
+└── tsconfig.json
+
+33 directories, 88 files

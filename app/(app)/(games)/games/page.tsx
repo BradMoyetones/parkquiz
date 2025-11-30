@@ -2,7 +2,7 @@
 import { MotionEffect } from "@/components/animate-ui/motion-effect";
 import { Section, SectionContent, SectionDescription, SectionHeader, SectionTitle } from "@/components/section";
 import { GAMES } from "@/lib/data";
-import GameCard from "../components/game-card";
+import GameCard from "../../(root)/components/game-card";
 import { useRouter } from "next/navigation";
 
 export default function GamesPage() {
