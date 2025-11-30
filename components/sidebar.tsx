@@ -82,7 +82,7 @@ export function SidebarContent({ className, children, ...props }: SidebarContent
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="fixed inset-0 bg-background/50 z-50"
+                    className="fixed inset-0 bg-background/50 backdrop-blur-sm z-50"
                     onClick={() => setIsOpen(false)}
                 />
 
@@ -92,7 +92,7 @@ export function SidebarContent({ className, children, ...props }: SidebarContent
                     animate="visible"
                     exit="exit"
                     className={cn(
-                        "fixed top-0 right-0 h-screen w-64 bg-background border-l border-border z-60 p-6 flex flex-col gap-6 shadow-lg",
+                        "fixed top-0 right-0 h-screen max-w-80 w-full bg-background border-l border-border z-50 p-6 flex flex-col gap-6 shadow-lg",
                         className
                     )}
                     {...props}

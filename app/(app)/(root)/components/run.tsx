@@ -6,7 +6,7 @@ import { Activity, CheckCircle, Clock, Coffee, Footprints } from "lucide-react";
 
 export default function Run() {
     return (
-        <Section id="social-run" className="py-24 relative overflow-hidden bg-muted/20 border-y">
+        <Section id="social-run" className="py-24 relative overflow-hidden bg-muted/30 border-y">
             <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-indigo-900/20 to-transparent"></div>
                 
             <SectionContent>
@@ -17,7 +17,6 @@ export default function Run() {
                                 direction: 'left',
                             }}
                             fade
-                            zoom
                             inView
                         >
                             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 mb-6">
@@ -30,7 +29,6 @@ export default function Run() {
                                 direction: 'left',
                             }}
                             fade
-                            zoom
                             inView
                             delay={0.05}
                         >
@@ -41,7 +39,6 @@ export default function Run() {
                                 direction: 'left',
                             }}
                             fade
-                            zoom
                             inView
                             delay={0.10}
                         >
@@ -55,7 +52,6 @@ export default function Run() {
                                 direction: 'left',
                             }}
                             fade
-                            zoom
                             inView
                             delay={0.15}
                         >
@@ -95,7 +91,6 @@ export default function Run() {
                                 direction: 'left',
                             }}
                             fade
-                            zoom
                             inView
                             delay={0.20}
                         >
@@ -113,7 +108,6 @@ export default function Run() {
                                 direction: 'right',
                             }}
                             fade
-                            zoom
                             inView
                         >
                             <div className="relative bg-muted/60 backdrop-blur-2xl rounded-2xl p-2 border border-indigo-400/50">

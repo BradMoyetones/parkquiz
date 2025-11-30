@@ -21,7 +21,6 @@ export default function Learn() {
                             key={fact.title}
                             slide={{ direction: "down" }}
                             fade
-                            zoom
                             inView
                             delay={0.10 * idx} // aumento según el index
                         >

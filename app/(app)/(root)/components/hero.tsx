@@ -19,7 +19,6 @@ export default function Hero() {
                     }}
                     fade
                     zoom
-                    inView
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent text-accent-foreground border border-primary mb-8 backdrop-blur-2xl animate-pulse">
                         <span className="w-2 h-2 rounded-full bg-primary"></span>
@@ -33,7 +32,6 @@ export default function Hero() {
                     }}
                     fade
                     zoom
-                    inView
                     delay={0.15}
                 >
                     <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-6">
@@ -47,7 +45,6 @@ export default function Hero() {
                     }}
                     fade
                     zoom
-                    inView
                     delay={0.25}
                 >
                     <p className="mt-4 max-w-2xl mx-auto text-xl md:text-2xl text-muted-foreground">
@@ -62,7 +59,6 @@ export default function Hero() {
                         }}
                         fade
                         zoom
-                        inView
                         delay={0.35}
                     >
                         <div className="flex items-center gap-3 text-lg font-semibold bg-muted/30 px-6 py-3 rounded-xl border border-border">
@@ -82,7 +78,6 @@ export default function Hero() {
                         }}
                         fade
                         zoom
-                        inView
                         delay={0.45}
                     >
                         <div className="flex items-center gap-2 mt-4">
@@ -102,7 +97,6 @@ export default function Hero() {
                         }}
                         fade
                         zoom
-                        inView
                         delay={0.55}
                     >
                         <a href="#games" className="flex items-center justify-center gap-2 px-8 py-4 bg-primary/80 text-primary-foreground font-bold text-lg rounded-lg hover:bg-primary hover:scale-105 transition-all shadow-[0_0_20px_var(--primary)]">
@@ -115,7 +109,6 @@ export default function Hero() {
                         }}
                         fade
                         zoom
-                        inView
                         delay={0.65}
                     >
                         <a href="#learn" className="px-8 py-4 bg-transparent border border-border font-bold text-lg rounded-lg hover:border-primary transition-all">

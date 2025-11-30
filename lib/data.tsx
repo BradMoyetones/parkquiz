@@ -39,7 +39,7 @@ const ROULETTE_OPTIONS = [
 
 const FACTS = [
     {
-        title: 'El Ojo de Dios',
+        title: 'El Monumento a Dios',
         text: "El monumento 'La Mano de Dios' pesa más de 1.200 toneladas y representa la fuerza creadora.",
         icon: <MapPin className="w-6 h-6 text-emerald-400" />,
     },
@@ -61,26 +61,26 @@ const GAMES = [
         description: "Demuestra cuánto sabes sobre los animales y monumentos del parque.",
         icon: <Brain className="w-6 h-6" />,
         tag: "Popular",
-        href: "/trivia",
+        href: "/games/trivia",
     },
     {
         title: "Ruleta Familiar",
         description: "Verdad, Reto o Dato Curioso. ¡Perfecto para romper el hielo!",
         icon: <RotateCw className="w-6 h-6" />,
         tag: "Diversión",
-        href: "/roulette",
+        href: "/games/roulette",
     },
     {
         title: "Encuentra al Cóndor",
         description: "Mini-juego de observación. ¿Qué tan rápidos son tus ojos?",
         icon: <SearchIcon className="w-6 h-6" />,
-        href: "/soon",
+        href: "/games/soon",
     },
     {
         title: "¿Quién Soy?",
         description: "Adivina el personaje o lugar con pistas que se vuelven más fáciles.",
         icon: <HelpCircle className="w-6 h-6" />,
-        href: "/soon",
+        href: "/games/soon",
     },
 ];
 

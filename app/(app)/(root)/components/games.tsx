@@ -1,15 +1,15 @@
 'use client'
-import { Brain, HelpCircle, RotateCw, SearchIcon } from "lucide-react";
 import GameCard from "./game-card";
 import { useRouter } from "next/navigation";
 import { Section, SectionContent, SectionDescription, SectionHeader, SectionTitle } from "@/components/section";
-import { MotionEffect } from "@/components/animate-ui/motion-effect";
 import { GAMES } from "@/lib/data";
+import { MotionEffect } from "@/components/animate-ui/motion-effect";
 
 export default function Games() {
     const router = useRouter()
+
     return (
-        <Section id="games" className="bg-muted/20">
+        <Section id="games" className="bg-muted/30">
             <SectionContent>
                 <SectionHeader>
                     <SectionTitle>Juegos Disponibles</SectionTitle>
@@ -25,7 +25,6 @@ export default function Games() {
                             key={game.title}
                             slide={{ direction: "down" }}
                             fade
-                            zoom
                             inView
                             delay={0.10 * idx} // aumento según el index
                         >

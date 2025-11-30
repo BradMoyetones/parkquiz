@@ -10,6 +10,8 @@ import { Menu } from "./animate-ui/icons/menu";
 import { useState } from "react";
 import { Separator } from "./ui/separator";
 import { AnimatedThemeToggler } from "./animated-theme-toggler";
+import Link from "next/link";
+import UserDropdown from "./user-dropdown";
 
 export default function SiteHeader() {
     const [isOpen, setIsOpen] = useState(false)
@@ -19,34 +21,36 @@ export default function SiteHeader() {
             <nav className="sticky top-0 w-full z-50 bg-background/70 backdrop-blur-md border-b border-border">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
-                        <div className="flex items-center gap-2">
+                        <Link href={"/"} className="flex items-center gap-2">
                             <Image src="/LOGO_FPJD.png" alt={siteConfig.name} width={35} height={35} className="bg-accent rounded-md" />
                             
                             <span className="font-bold text-xl tracking-tight">{siteConfig.name}</span>
-                        </div>
+                        </Link>
                         <div className="hidden md:block">
-                            <div className="ml-10 flex items-center space-x-8">
-                                <a
-                                    href="#games"
+                            <div className="ml-10 flex items-center space-x-2">
+                                <Link
+                                    href="/#games"
                                     className="hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium"
                                 >
                                     Juegos
-                                </a>
-                                <a
-                                    href="#learn"
+                                </Link>
+                                <Link
+                                    href="/#learn"
                                     className="hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium"
                                 >
                                     Aprender
-                                </a>
-                                <a
-                                    href="#social-run"
+                                </Link>
+                                <Link
+                                    href="/#social-run"
                                     className="hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium flex items-center gap-1"
                                 >
                                     <Footprints className="size-4" /> Carreras
-                                </a>
-                                <button className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground transition-all px-5 py-2 rounded-full font-bold text-sm transform hover:scale-105 duration-200 cursor-pointer">
+                                </Link>
+                                <Link href={"/games"} className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground transition-all px-5 py-2 rounded-full font-bold text-sm transform hover:scale-105 duration-200 cursor-pointer">
                                     Jugar Ahora
-                                </button>
+                                </Link>
+
+                                <UserDropdown />
                             </div>
                         </div>
                         
@@ -95,9 +99,9 @@ export default function SiteHeader() {
                         <a href="#social-run" className="flex items-center gap-1 px-3 py-2 rounded-md text-base font-medium hover:text-primary">
                             <Footprints className="size-4" /> Carreras
                         </a>
-                        <a href="#games" className="block px-3 py-2 rounded-md text-base font-medium bg-accent text-primary hover:bg-primary hover:text-primary-foreground transition-all text-center">
+                        <Link href="/games" className="block px-3 py-2 rounded-md text-base font-medium bg-accent text-primary hover:bg-primary hover:text-primary-foreground transition-all text-center">
                             Jugar Ahora
-                        </a>
+                        </Link>
                     </div>
 
                     <Separator />
@@ -112,6 +116,9 @@ export default function SiteHeader() {
                     </div>
 
                     <Separator />
+
+                    <UserDropdown mode="mobile" />
+
 
                     {/* Spacer */}
                     <div className="flex-1" />
