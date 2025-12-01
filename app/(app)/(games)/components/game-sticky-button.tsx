@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import { Gamepad2 } from 'lucide-react';
 import type { ReactNode } from 'react';
 
@@ -17,16 +18,16 @@ export function GameStickyButton({
     disabled = false,
 }: GameStickyButtonProps) {
     return (
-        <div className="fixed bottom-0 left-0 right-0 z-40 bg-gradient-to-t from-background via-background/95 to-transparent pt-4 pb-6 px-4">
+        <div className="fixed bottom-0 left-0 right-0 z-40 bg-linear-to-t from-background via-background/70 to-transparent py-4 px-4">
             <div className="max-w-4xl mx-auto">
-                <button
+                <Button
                     onClick={onClick}
                     disabled={disabled}
-                    className="w-full h-14 md:h-16 rounded-xl bg-gradient-to-r from-primary via-primary to-primary/90 text-primary-foreground font-black text-lg hover:shadow-2xl hover:shadow-primary/40 transition-all duration-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group"
+                    className="w-full h-14 md:h-16 font-black text-lg hover:shadow-2xl hover:shadow-primary/40 transition-shadow duration-300 cursor-pointer"
                 >
-                    <span className="group-hover:scale-110 transition-transform duration-300">{icon}</span>
+                    <span>{icon}</span>
                     <span>{label}</span>
-                </button>
+                </Button>
             </div>
         </div>
     );

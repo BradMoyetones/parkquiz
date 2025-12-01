@@ -98,7 +98,7 @@ export default function TriviaPage() {
                 </div>
 
                 {/* Gallery Section */}
-                <div className="px-4 md:px-6 pb-12">
+                <div className="px-4 md:px-6 pb-12 overflow-hidden">
                     <div className="max-w-4xl mx-auto">
                         <h2 className="text-2xl font-black text-foreground mb-4">Vista Previa del Juego</h2>
                         <GameGallery images={TRIVIA_GALLERY_IMAGES} title="Trivia Bioparque Wakatá" />
