@@ -94,7 +94,7 @@ export default function TriviaPage() {
                         
                     </header>
                     <div
-                        className="absolute inset-0 h-97 bg-linear-to-t from-black to-transparent"
+                        className="absolute inset-0 h-97 bg-linear-to-t from-background to-transparent"
                     />
 
                     {/* Content with padding for sticky button */}
