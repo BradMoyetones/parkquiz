@@ -49,7 +49,7 @@ Para levantar el proyecto en tu entorno local, sigue los siguientes pasos, utili
 
 1.  **Clonar el repositorio:**
 ```bash
-git clone [https://aws.amazon.com/es/what-is/repo/](https://aws.amazon.com/es/what-is/repo/)
+git clone https://github.com/BradMoyetones/parkquiz.git
 cd parkquiz
 ```
 
