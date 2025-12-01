@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import { useState } from 'react';
@@ -5,12 +6,27 @@ import { Brain, Clock, Zap, Target, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { GameInstructionsGrid } from '../../components/game-instructions-grid';
 import { GameStickyButton } from '../../components/game-sticky-button';
-import { GameGallery } from '../../components/game-gallery';
+import { CardProps, CardStack } from '@/components/ui/card-stack';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { useGSAP } from '@gsap/react';
 
-const TRIVIA_GALLERY_IMAGES = [
-    '/trivia-game-screenshot-educational.jpg',
-    '/multiple-choice-questions-interface.jpg',
-    '/leaderboard-ranking-screen.jpg',
+gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother);
+
+const TRIVIA_GALLERY_IMAGES: CardProps[] = [
+    {
+        id: 1,
+        image: '/games/spiderman/gamepad.jpg',
+    },
+    {
+        id: 2,
+        image: '/multiple-choice-questions-interface.jpg',
+    },
+    {
+        id: 3,
+        image: '/leaderboard-ranking-screen.jpg',
+    },
 ];
 
 const INSTRUCTION_ITEMS = [
@@ -53,114 +69,144 @@ export default function TriviaPage() {
         console.log('Navigate to ranking');
     };
 
+    useGSAP(() => {
+        const smoother = ScrollSmoother.create({
+            wrapper: '#smooth-wrapper',
+            content: '#smooth-content',
+            smooth: 1.2, // Ajusta la suavidad
+            effects: true, // Permite animaciones ligadas al scroll
+        });
+
+        return () => {
+            smoother.kill();
+        };
+    }, []);
+
     return (
         <main className="min-h-screen w-full bg-background text-foreground">
-            <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-                <div className="absolute top-0 -right-1/4 w-96 h-96 bg-primary/8 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute top-1/3 -left-1/4 w-96 h-96 bg-accent/6 rounded-full blur-3xl animate-pulse delay-1000" />
-                <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-secondary/5 rounded-full blur-3xl animate-pulse delay-500" />
-            </div>
-
-            {/* Content with padding for sticky button */}
-            <div className="relative w-full pb-24">
-                {/* Hero Section - Attractive header */}
-                <div className="px-4 md:px-6 pt-8 md:pt-12 pb-8">
-                    <div className="max-w-4xl mx-auto">
-                        {/* Icon Badge */}
-                        <div className="mb-6 flex justify-center">
-                            <div className="inline-flex items-center justify-center p-4 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 border-2 border-primary/30 group hover:scale-110 transition-transform duration-300">
-                                <Brain className="w-12 h-12 text-primary group-hover:text-accent transition-colors" />
-                            </div>
+            <div id="smooth-wrapper">
+                <div id="smooth-content" className='relative max-w-4xl mx-auto'>
+                    <header className="flex relative h-96 bg-accent max-w-4xl mx-auto overflow-hidden">
+                        <div className='absolute flex items-center justify-center inset-0' data-speed="0.5">
+                            <img src="/games/spiderman/spiderman-background.jpg" alt="" className='object-center object-cover w-full ' />
+                            {/* <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e" alt="" className='object-center object-cover w-full' /> */}
                         </div>
+                        
+                    </header>
+                    <div
+                        className="absolute inset-0 h-97 bg-linear-to-t from-black to-transparent"
+                    />
 
-                        {/* Title and Tagline */}
-                        <div className="text-center mb-8">
-                            <h1 className="text-4xl md:text-5xl font-black text-foreground mb-3 leading-tight">
-                                Trivia Bioparque Wakatá
-                            </h1>
-                            <p className="text-lg md:text-xl text-muted-foreground font-light">
-                                Pon a prueba tu conocimiento sobre la naturaleza y la historia de Colombia
-                            </p>
-                        </div>
-
-                        {/* Quick Stats */}
-                        <div className="grid grid-cols-2 gap-4 mb-8">
-                            <div className="p-4 rounded-xl bg-primary/10 border border-primary/20 text-center">
-                                <p className="text-sm font-medium text-muted-foreground mb-1">Tu Mejor Puntaje</p>
-                                <p className="text-3xl font-black text-primary">9/10</p>
-                            </div>
-                            <div className="p-4 rounded-xl bg-accent/10 border border-accent/20 text-center">
-                                <p className="text-sm font-medium text-muted-foreground mb-1">Partidas Jugadas</p>
-                                <p className="text-3xl font-black text-accent">14</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Gallery Section */}
-                <div className="px-4 md:px-6 pb-12 overflow-hidden">
-                    <div className="max-w-4xl mx-auto">
-                        <h2 className="text-2xl font-black text-foreground mb-4">Vista Previa del Juego</h2>
-                        <GameGallery images={TRIVIA_GALLERY_IMAGES} title="Trivia Bioparque Wakatá" />
-                    </div>
-                </div>
-
-                {/* Expandable Instructions Section */}
-                <div className="px-4 md:px-6">
-                    <div className="max-w-4xl mx-auto">
-                        {/* Expand Toggle Button */}
-                        <button
-                            onClick={() => setIsExpanded(!isExpanded)}
-                            className="w-full px-6 py-4 rounded-xl border-2 border-border font-bold text-foreground hover:bg-muted/50 transition-all duration-200 flex items-center justify-between group"
-                        >
-                            <span>{isExpanded ? '− Ocultar Instrucciones' : '+ Ver Cómo Jugar'}</span>
-                            <span className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
-                                ▼
-                            </span>
-                        </button>
-
-                        {/* Instructions Grid - Expandable */}
-                        {isExpanded && (
-                            <div className="mt-6 space-y-8 pb-8 animate-in fade-in duration-300">
-                                <GameInstructionsGrid items={INSTRUCTION_ITEMS} />
-
-                                {/* Topics Section */}
-                                <div className="space-y-4">
-                                    <h3 className="text-xl font-black text-foreground">Temas que Explorarás</h3>
-                                    <div className="flex flex-wrap gap-3">
-                                        {TOPICS.map((topic, index) => (
-                                            <span
-                                                key={index}
-                                                className="px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 text-sm font-semibold text-foreground hover:scale-105 transition-transform duration-300 cursor-default"
-                                            >
-                                                {topic}
-                                            </span>
-                                        ))}
+                    {/* Content with padding for sticky button */}
+                    <div className="relative w-full pb-24">
+                        {/* Hero Section - Attractive header */}
+                        <div className="px-4 md:px-6 pt-8 md:pt-12 pb-8">
+                            <div className="max-w-4xl mx-auto">
+                                {/* Icon Badge */}
+                                <div className="mb-6 flex justify-center">
+                                    <div className="inline-flex items-center justify-center p-4 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 border-2 border-primary/30 group hover:scale-110 transition-transform duration-300">
+                                        <Brain className="w-12 h-12 text-primary group-hover:text-accent transition-colors" />
                                     </div>
                                 </div>
 
-                                {/* Leaderboard CTA */}
-                                <div className="p-6 rounded-xl bg-gradient-to-br from-primary/15 via-transparent to-accent/10 border-2 border-primary/20">
-                                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                                        <div>
-                                            <h3 className="text-lg font-black text-foreground mb-1">
-                                                Compite con Otros Jugadores
-                                            </h3>
-                                            <p className="text-sm text-muted-foreground">
-                                                Sube el ranking global y demuestra tu conocimiento
-                                            </p>
+                                {/* Title and Tagline */}
+                                <div className="text-center mb-8">
+                                    <h1 className="text-4xl md:text-5xl font-black text-foreground mb-3 leading-tight">
+                                        Trivia Bioparque Wakatá
+                                    </h1>
+                                    <p className="text-lg md:text-xl text-muted-foreground font-light">
+                                        Pon a prueba tu conocimiento sobre la naturaleza y la historia de Colombia
+                                    </p>
+                                </div>
+
+                                {/* Quick Stats */}
+                                <div className="grid grid-cols-2 gap-4 mb-8">
+                                    <div className="p-4 rounded-xl bg-primary/10 border border-primary/20 text-center">
+                                        <p className="text-sm font-medium text-muted-foreground mb-1">
+                                            Tu Mejor Puntaje
+                                        </p>
+                                        <p className="text-3xl font-black text-primary">9/10</p>
+                                    </div>
+                                    <div className="p-4 rounded-xl bg-accent/10 border border-accent/20 text-center">
+                                        <p className="text-sm font-medium text-muted-foreground mb-1">
+                                            Partidas Jugadas
+                                        </p>
+                                        <p className="text-3xl font-black text-accent">14</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Gallery Section */}
+                        <div className="px-4 md:px-6 pb-12 overflow-hidden">
+                            <div className="max-w-4xl mx-auto">
+                                <h2 className="text-2xl font-black text-foreground mb-4">Vista Previa del Juego</h2>
+                                <CardStack items={TRIVIA_GALLERY_IMAGES} className="max-w-4xl w-full mt-10" />
+                            </div>
+                        </div>
+
+                        {/* Expandable Instructions Section */}
+                        <div className="px-4 md:px-6">
+                            <div className="max-w-4xl mx-auto">
+                                {/* Expand Toggle Button */}
+                                <button
+                                    onClick={() => setIsExpanded(!isExpanded)}
+                                    className="w-full px-6 py-4 rounded-xl border-2 border-border font-bold text-foreground hover:bg-muted/50 transition-all duration-200 flex items-center justify-between group"
+                                >
+                                    <span>{isExpanded ? '− Ocultar Instrucciones' : '+ Ver Cómo Jugar'}</span>
+                                    <span
+                                        className={`transition-transform duration-300 ${
+                                            isExpanded ? 'rotate-180' : ''
+                                        }`}
+                                    >
+                                        ▼
+                                    </span>
+                                </button>
+
+                                {/* Instructions Grid - Expandable */}
+                                {isExpanded && (
+                                    <div className="mt-6 space-y-8 pb-8 animate-in fade-in duration-300">
+                                        <GameInstructionsGrid items={INSTRUCTION_ITEMS} />
+
+                                        {/* Topics Section */}
+                                        <div className="space-y-4">
+                                            <h3 className="text-xl font-black text-foreground">Temas que Explorarás</h3>
+                                            <div className="flex flex-wrap gap-3">
+                                                {TOPICS.map((topic, index) => (
+                                                    <span
+                                                        key={index}
+                                                        className="px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 text-sm font-semibold text-foreground hover:scale-105 transition-transform duration-300 cursor-default"
+                                                    >
+                                                        {topic}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
-                                        <Button
-                                            onClick={handleRanking}
-                                            className="shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground font-bold"
-                                        >
-                                            <Trophy className="w-4 h-4 mr-2" />
-                                            Ver Ranking
-                                        </Button>
+
+                                        {/* Leaderboard CTA */}
+                                        <div className="p-6 rounded-xl bg-gradient-to-br from-primary/15 via-transparent to-accent/10 border-2 border-primary/20">
+                                            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                                                <div>
+                                                    <h3 className="text-lg font-black text-foreground mb-1">
+                                                        Compite con Otros Jugadores
+                                                    </h3>
+                                                    <p className="text-sm text-muted-foreground">
+                                                        Sube el ranking global y demuestra tu conocimiento
+                                                    </p>
+                                                </div>
+                                                <Button
+                                                    onClick={handleRanking}
+                                                    className="shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground font-bold"
+                                                >
+                                                    <Trophy className="w-4 h-4 mr-2" />
+                                                    Ver Ranking
+                                                </Button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                )}
                             </div>
-                        )}
+                        </div>
                     </div>
                 </div>
             </div>

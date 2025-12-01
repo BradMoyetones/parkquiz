@@ -1,12 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import { MotionEffect } from "@/components/animate-ui/motion-effect";
+import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/config";
-import { ArrowRight, Calendar, MapPin } from "lucide-react";
+import { ArrowRight, Brain, Calendar, MapPin } from "lucide-react";
 
 export default function Hero() {
     return (
-        <section className="relative min-h-[calc(100vh-65px)] flex items-center justify-center overflow-hidden">
+        <section className="relative min-h-[calc(100vh-65px)] py-8 flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0 pattern-grid opacity-20 text-muted-foreground/40"></div>
             {/* Abstract Shapes */}
             <div className="absolute top-20 right-0 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"></div>
@@ -99,8 +100,10 @@ export default function Hero() {
                         zoom
                         delay={0.55}
                     >
-                        <a href="#games" className="flex items-center justify-center gap-2 px-8 py-4 bg-primary/80 text-primary-foreground font-bold text-lg rounded-lg hover:bg-primary hover:scale-105 transition-all shadow-[0_0_20px_var(--primary)]">
-                            Explorar Juegos <ArrowRight />
+                        <a href="#games">
+                            <Button className="px-8! py-7 bg-primary/80 font-bold text-lg rounded-lg hover:bg-primary shadow-[0_0_20px_var(--primary)]">
+                                Explorar Juegos <ArrowRight />
+                            </Button>
                         </a>
                     </MotionEffect>
                     <MotionEffect
@@ -111,8 +114,10 @@ export default function Hero() {
                         zoom
                         delay={0.65}
                     >
-                        <a href="#learn" className="px-8 py-4 bg-transparent border border-border font-bold text-lg rounded-lg hover:border-primary transition-all">
-                            Aprender
+                        <a href="#learn">
+                            <Button variant={"outline"} className="px-8! py-7 bg-transparent font-bold text-lg rounded-lg hover:border-primary!">
+                                Aprender <Brain />
+                            </Button>
                         </a>
                     </MotionEffect>
                 </div>
