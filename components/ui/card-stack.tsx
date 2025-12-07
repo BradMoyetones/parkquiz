@@ -173,7 +173,7 @@ function CardStack({
                 key={i}
                 onClick={() => goToIndex(i)}
                 className={`
-                  h-2 rounded-full transition-all duration-300
+                  h-2 rounded-full transition-all duration-300 cursor-pointer
                   ${i === activeIndex ? "bg-white w-6" : "bg-white/40 w-2"}
                 `}
               />
@@ -203,7 +203,7 @@ function StackCard({
         <img
           src={image}
           alt={title || "Image"}
-          className="opacity-50 object-cover w-full h-full"
+          className="object-cover w-full h-full"
         />
 
         {showOverlay && (

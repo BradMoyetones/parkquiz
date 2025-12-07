@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Brain, Clock, Zap, Target, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { GameInstructionsGrid } from '../../components/game-instructions-grid';
@@ -60,6 +60,7 @@ const TOPICS = ['Bioparque Wakatá', 'Monumentos Históricos', 'Historia de Colo
 
 export default function TriviaPage() {
     const [isExpanded, setIsExpanded] = useState(false);
+    const imgRef = useRef(null)
 
     const handlePlay = () => {
         console.log('Navigate to trivia game');
@@ -70,28 +71,61 @@ export default function TriviaPage() {
     };
 
     useGSAP(() => {
+        // Parte de este código se baso en el ejemplo de la cominidad de GSAP -> https://gsap.com/community/forums/topic/37847-parallax-effect-on-background-image/
         const smoother = ScrollSmoother.create({
             wrapper: '#smooth-wrapper',
             content: '#smooth-content',
-            smooth: 1.2, // Ajusta la suavidad
-            effects: true, // Permite animaciones ligadas al scroll
+            smooth: 1.2,
+            effects: true,
         });
+
+        const header = document.getElementById("parallax-header");
+        const img = imgRef.current;
+
+        if (!img || !header) return;
+
+        // Igual que el ejemplo
+        const getRatio = (el: HTMLElement) => window.innerHeight / (window.innerHeight + el.offsetHeight);
+
+        // Crear espacio extra para mover sin recortar
+        gsap.set(img, { scale: 1 });
+
+        gsap.fromTo(
+            img,
+            {
+                y: () => 0, // como el i===0 del ejemplo
+            },
+            {
+                y: () => window.innerHeight * (1 - getRatio(header)),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: header,
+                    start: "top", 
+                    end: "bottom top",
+                    scrub: true,
+                    invalidateOnRefresh: true,
+                }
+            }
+        );
 
         return () => {
             smoother.kill();
         };
+
     }, []);
+
+    // Nota: Dejar las dependencias vacías es correcto si usas GSAP con IDs en el DOM.
 
     return (
         <main className="min-h-screen w-full bg-background text-foreground">
             <div id="smooth-wrapper">
                 <div id="smooth-content" className='relative max-w-4xl mx-auto'>
-                    <header className="flex relative h-96 bg-accent max-w-4xl mx-auto overflow-hidden">
-                        <div className='absolute flex items-center justify-center inset-0' data-speed="0.5">
-                            <img src="/games/spiderman/spiderman-background.jpg" alt="" className='object-center object-cover w-full ' />
-                            {/* <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e" alt="" className='object-center object-cover w-full' /> */}
-                        </div>
-                        
+                    <header 
+                        id="parallax-header"
+                        className="flex relative items-center justify-center h-96 bg-accent max-w-4xl mx-auto overflow-hidden"
+                    >
+                        <img ref={imgRef} src="/games/spiderman/spiderman-background.jpg" alt="" className='absolute object-center object-cover w-full h-full top-0 left-0' />
+                        {/* <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e" alt="" className='object-center object-cover w-full' /> */}
                     </header>
                     <div
                         className="absolute inset-0 h-97 bg-linear-to-t from-background to-transparent"
@@ -104,8 +138,8 @@ export default function TriviaPage() {
                             <div className="max-w-4xl mx-auto">
                                 {/* Icon Badge */}
                                 <div className="mb-6 flex justify-center">
-                                    <div className="inline-flex items-center justify-center p-4 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 border-2 border-primary/30 group hover:scale-110 transition-transform duration-300">
-                                        <Brain className="w-12 h-12 text-primary group-hover:text-accent transition-colors" />
+                                    <div className="inline-flex items-center justify-center text-primary outline-8 outline-transparent hover:outline-8 hover:outline-accent p-4 rounded-2xl bg-linear-to-br from-primary/20 to-accent/20 border-2 border-primary/30 group hover:scale-110 transition-all duration-300">
+                                        <Brain className="w-12 h-12" />
                                     </div>
                                 </div>
 
